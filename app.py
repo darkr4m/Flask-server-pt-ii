@@ -21,6 +21,9 @@ Student Class
     grade - string
 """
 from flaskr.classes.student import Student
+from flaskr.models.Student import StudentModel
+from flaskr import create_app, db
+
 # sample student data
 students = [
      {'id': '1', 'first_name': 'John', 'last_name': 'Doe', 'age': 18, 'grade': 'A'},
@@ -48,3 +51,8 @@ print(stud1)
 stud2 = print(Student.get_student_by_id('2'))
 
 print(stud1.to_dict())
+
+app = create_app()
+
+with app.app_context():
+    StudentModel.query.all()

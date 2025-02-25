@@ -1,6 +1,9 @@
 import os
 
 from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+
+db = SQLAlchemy()
 
 def create_app(test_config=None):
     #create and configure the application
@@ -9,7 +12,8 @@ def create_app(test_config=None):
         # The instance folder is located outside of the flaskr package and can hold data that should not be committed to version control
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
-        SECRET_KEY='dev'
+        SECRET_KEY='dev',
+        SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg://username:password@localhost/students'
     )
 
     if test_config is None:
@@ -19,6 +23,7 @@ def create_app(test_config=None):
         # load the test config if passed in
         app.config.from_mapping(test_config)
 
+
     # ensure the instance folder exists
     try:
         os.makedirs(app.instance_path)
@@ -27,5 +32,6 @@ def create_app(test_config=None):
 
     from . import students
     app.register_blueprint(students.bp)
+    db.init_app(app)
 
     return app
