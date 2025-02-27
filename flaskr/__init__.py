@@ -1,9 +1,9 @@
 import os
 
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy as sa
 
-db = SQLAlchemy()
+db = sa()
 
 def create_app(test_config=None):
     #create and configure the application
