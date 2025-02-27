@@ -20,8 +20,8 @@ Student Class
     age - integer
     grade - string
 """
-from flaskr.classes.student import Student
-from flaskr.models.Student import StudentModel
+# from flaskr.classes.student import Student
+from flaskr.models.Students import Students
 from flaskr import create_app, db
 
 # sample student data
@@ -42,17 +42,17 @@ students = [
 # print(student)
 # Student.add_student(student)
 
-for student in students:
-    new_student = Student(**student)
-    Student.add_student(new_student)
+# for student in students:
+#     new_student = Student(**student)
+#     Student.add_student(new_student)
 
-stud1 = Student.get_student_by_id('1')
-print(stud1)
-stud2 = print(Student.get_student_by_id('2'))
+# stud1 = Student.get_student_by_id('1')
+# print(stud1)
+# stud2 = print(Student.get_student_by_id('2'))
 
-print(stud1.to_dict())
+# print(stud1.to_dict())
 
 app = create_app()
 
 with app.app_context():
-    StudentModel.query.all()
+    Students.query.all()
